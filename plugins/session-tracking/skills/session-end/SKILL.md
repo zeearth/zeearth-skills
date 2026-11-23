@@ -46,6 +46,8 @@ Use the same conventions as `session-start` (project root, project name, dev nam
 
 6. **Close global tracking** (only if `SESSION_GLOBAL_TRACKING` is set): same on that file, matching the last open row for this project **and** this dev. No total line is required there.
 
-7. **Confirm** with the resume filename and the project's total time.
+7. **Local containers**: if the docker MCP tools are available, list the running containers of the project on the local host only (never a remote host such as a NAS), as in `session-start` step 3. If there are any, ASK the user whether to stop them (a question with the container names, default suggestion: stop, to free the machine). Stop them with `docker_stop` only on a yes, application and proxy first, database last. Never stop containers of other projects, and never decide on your own. Skip silently when none are running.
+
+8. **Confirm** with the resume filename, the project's total time and whether the containers were stopped or left running.
 
 If no open row is found, say so and ask whether to create a closed row from a start time given by the user, rather than guessing.
