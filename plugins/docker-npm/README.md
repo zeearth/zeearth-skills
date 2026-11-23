@@ -15,10 +15,20 @@ When Node runs in Docker, running `npm install` on the host builds `node_modules
 
 - Docker with Compose, and a Node project that runs in a container.
 - Claude Code.
+- `python3` on the host (guard hook only), and `rsync` on the host only when the container has its own `node_modules` copy.
 
 ## Install
 
-As a plain skill (global):
+Recommended, as a plugin (includes the guard hook below):
+
+```
+/plugin marketplace add zeearth/zeearth-skills
+/plugin install docker-npm@zeearth-skills
+```
+
+Then run `/reload-plugins` or restart Claude Code.
+
+Alternatively, as a plain skill (global, no hook):
 
 ```bash
 git clone https://github.com/zeearth/zeearth-skills.git
@@ -28,7 +38,7 @@ cp -r zeearth-skills/plugins/docker-npm/skills/docker-npm ~/.claude/skills/
 
 For a single project, copy `plugins/docker-npm/skills/docker-npm` to `<project>/.claude/skills/` instead.
 
-As a plugin: `/plugin marketplace add zeearth/zeearth-skills`, then `/plugin install docker-npm@zeearth-skills`.
+Restart Claude Code afterwards.
 
 ## Usage
 

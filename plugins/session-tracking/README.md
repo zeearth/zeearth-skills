@@ -1,9 +1,18 @@
 # session-tracking
 
-Two manual skills for freelance-style work sessions.
+Two manual skills for freelance-style work sessions: they log your time per project and leave a written resume so the next session (yours or a teammate's) starts with context. Requires a Git repository (the project root and dev name come from `git`); no other dependency.
 
 - `/session-start` loads the project context (`docs/PROJECT_SUMMARY.md`, `CLAUDE.md` or `README.md`, plus the latest `resume/` file) and opens a row in `TIME_TRACKING.md`.
 - `/session-end [summary]` writes `resume/session_NN_YYYYMMDD_HHMM.md`, updates `docs/PROJECT_SUMMARY.md` if it exists, and closes the row (end time, duration, summary, running total).
+
+## Usage
+
+```
+/session-start
+/session-end Added the invoice export and fixed the VAT rounding
+```
+
+Plain phrases such as "end the session" work too. The summary after `/session-end` is optional.
 
 ## Optional global tracking
 
@@ -50,6 +59,8 @@ Ask Claude for the value, or run `printenv SESSION_GLOBAL_TRACKING` in a Claude 
 /plugin marketplace add zeearth/zeearth-skills
 /plugin install session-tracking@zeearth-skills
 ```
+
+Then run `/reload-plugins` or restart Claude Code.
 
 ## License
 

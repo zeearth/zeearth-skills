@@ -2,6 +2,17 @@
 
 `/persona <id>` puts Claude in an expert persona for the rest of the conversation, so you stop restating the role each time.
 
+Requires `python3` (the merge script has no other dependency).
+
+## Install
+
+```
+/plugin marketplace add zeearth/zeearth-skills
+/plugin install personas@zeearth-skills
+```
+
+Then run `/reload-plugins` or restart Claude Code, and try `/persona list`.
+
 ## Bundled personas
 
 | Id | Persona |
@@ -52,4 +63,10 @@ and the bundled "Senior Web Designer" keeps every other section.
 
 Add a line to the project's `CLAUDE.md`, for example: "UI screens: use the `webdesigner` persona." Claude adopts it when the task matches. A persona never overrides CLAUDE.md rules or the answer language.
 
-The merge is done by `skills/persona/resolve.py` (Python 3, no dependency).
+The merge is done by `skills/persona/resolve.py`. Run it from the project root so the project layer is found, or pass `--project <dir>`.
+
+## Limits
+
+- One persona is active at a time; switching replaces the previous one.
+- A persona changes viewpoint and deliverables, never your `CLAUDE.md` rules or the language of the answers.
+- Persona ids are the file names in `personas/`; `/persona list` is the source of truth.

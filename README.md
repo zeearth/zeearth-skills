@@ -4,10 +4,38 @@ A [Claude Code](https://claude.com/claude-code) plugin marketplace with small, f
 
 ## Install
 
+Prerequisites: [Claude Code](https://claude.com/claude-code) and `git`. `python3` is needed by `conventions-guard`, `docker-npm` (guard hook) and `personas`. `docker-npm` also needs Docker with Compose in the projects where you use it.
+
+1. Add the marketplace (once). Run these inside Claude Code:
+
+   ```
+   /plugin marketplace add zeearth/zeearth-skills
+   ```
+
+   A full Git URL (`https://github.com/zeearth/zeearth-skills.git`) or a local clone path also works.
+
+2. Install the plugins you want. The part after `@` is the marketplace name, `zeearth-skills`:
+
+   ```
+   /plugin install conventions-guard@zeearth-skills
+   /plugin install docker-npm@zeearth-skills
+   /plugin install personas@zeearth-skills
+   /plugin install session-tracking@zeearth-skills
+   ```
+
+   The install prompt lets you choose the scope: user (all your projects), project (shared through the repo's `.claude/settings.json`) or local (this project, just for you).
+
+3. Run `/reload-plugins`, or restart Claude Code, so the new skills and hooks load. Check with `/plugin`.
+
+Update and remove:
+
 ```
-/plugin marketplace add zeearth/zeearth-skills
-/plugin install <plugin>@zeearth-skills
+/plugin marketplace update zeearth-skills
+/plugin update <plugin>@zeearth-skills
+/plugin uninstall <plugin>@zeearth-skills
 ```
+
+Commands are available as `/session-start`, `/persona`, `/docker-npm`. If a name clashes with another plugin, use the namespaced form, for example `/personas:persona`.
 
 ## Plugins
 
